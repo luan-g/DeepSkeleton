@@ -37,15 +37,15 @@ void QuantizeLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   Dtype* top_data = top[0]->mutable_cpu_data();
   
   for (int i = 0; i < bottom[0]->count(); ++i) {
-    if (bot_data[i] < 1 || bot_data[i] >=200)
+    if (bot_data[i] < 1 || bot_data[i] >=150)
       top_data[i] = Dtype(0);
-    else if (bot_data[i] >= 1 && bot_data[i] < 12)
+    else if (bot_data[i] >= 1 && bot_data[i] < 10)
       top_data[i] = Dtype(1);
-    else if (bot_data[i] >= 12 && bot_data[i] < 36)
+    else if (bot_data[i] >= 10 && bot_data[i] < 26)
       top_data[i] = Dtype(2);
-    else if (bot_data[i] >= 36 && bot_data[i] < 80)
+    else if (bot_data[i] >= 26 && bot_data[i] < 60)
       top_data[i] = Dtype(3);
-    else if (bot_data[i] >= 80 && bot_data[i] < 200)          
+    else if (bot_data[i] >= 60 && bot_data[i] < 150)          
       top_data[i] = Dtype(4);
     else 
       LOG(FATAL)<<"unknown scale"<<bot_data[i];
